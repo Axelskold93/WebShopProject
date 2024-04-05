@@ -4,25 +4,27 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Products</title>
+        <link rel="stylesheet" href="~/css/products.css" />
     </head>
-    <body>
+      <body>
         <h1>Products</h1>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-            </tr>
+        <div class="products">
             @foreach (var product in Model.Products)
             {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@product.Price</td>
-                    <td>@product.Description</td>
-                    <td><img src="~/images/@product.ImagePath" alt="@product.Name" style="max-width: 100px; max-height: 100px;" /></td>
-                </tr>
+                <div class="product-item">
+                    <div class="product-image-container">
+                        <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
+                    </div>
+                    <div class="product-details">
+                        <h4 class="product-name">@product.Name</h4>
+                        <p class="product-price">@product.Price :-</p>
+                    </div>
+                </div>
             }
-        </table>
-    </body>
+        </div>
+      </body>
     </html>
 }

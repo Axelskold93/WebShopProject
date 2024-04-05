@@ -1,0 +1,31 @@
+﻿body {
+    background-color: pink;
+
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    
+}
+.product-item {
+    width: 250px;
+    height: 300px;
+    border: 1px solid red;
+    background-color: white;
+    margin: 10px;
+    padding: 10px
+}
+.product-image {
+    height: 200px;
+    width: 250px;
+}
+.product-details {
+    margin: 1px;
+}
+.product-price,
+.product-description {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+}
+
+

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebShop.Data;
+using WebShopProject.Data;
 
 namespace WebShop.Controllers
 {

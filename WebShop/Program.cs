@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
-using WebShop.Data;
-using WebShop.Models;
+using WebShopProject.Data;
+using WebShopProject.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -119,7 +119,8 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
-    SampleData.Create(context);
+    SampleData.CreateAccount(context);
+    SampleData.CreateProducts(context);
 }
 
 app.Run();

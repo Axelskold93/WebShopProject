@@ -1,5 +1,6 @@
 ﻿@page
 @model WebShopProject.Pages.ProductsModel
+@using WebShopProject.Models
 @{
     <!DOCTYPE html>
     <html>
@@ -15,7 +16,7 @@
             @foreach (var product in Model.Products)
             {
                 <div class="product-item">
-                    <div class="product-image-container">
+                    <div class="product-image-container" title="@product.Description">
                         <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
                     </div>
                     <div class="product-details">

@@ -34,3 +34,15 @@ body {
     transform: scale(1.1);
 }
 
+/* Apply styles to the tooltip */
+.product-image-container:hover::after {
+    content: attr(title); /* Use the value of the title attribute */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8); /* Background color */
+    color: white; /* Text color */
+    padding: 5px; /* Padding around the text */
+    border-radius: 5px; /* Border radius */
+    z-index: 1; /* Ensure it appears above other elements */
+}
+
+

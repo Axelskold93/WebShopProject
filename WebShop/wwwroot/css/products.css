@@ -34,15 +34,45 @@ body {
     transform: scale(1.1);
 }
 
-/* Apply styles to the tooltip */
-.product-image-container:hover::after {
-    content: attr(title); /* Use the value of the title attribute */
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.8); /* Background color */
-    color: white; /* Text color */
-    padding: 5px; /* Padding around the text */
-    border-radius: 5px; /* Border radius */
-    z-index: 1; /* Ensure it appears above other elements */
+/* Hide the default browser tooltip */
+.product-image-container {
+    position: relative;
+}
+
+       .product-image-container::after {
+            content: attr(title); /* Use the value of the title attribute */
+            position: absolute;
+            top: 100%; /* Position the tooltip below the element */
+            left: 50%; /* Center the tooltip horizontally */
+            transform: translateX(-50%); /* Center the tooltip horizontally */
+            background-color: rgba(0, 0, 0, 0.8); /* Background color */
+            color: white; /* Text color */
+            padding: 5px; /* Padding around the text */
+            border-radius: 5px; /* Border radius */
+            z-index: 1; /* Ensure it appears above other elements */
+            opacity: 0; /* Hide the default browser tooltip */
+            visibility: hidden; /* Hide the default browser tooltip */
+            pointer-events: none; /* Disable pointer events on the tooltip */
+        }
+
+    /* Show the styled tooltip on hover */
+    .product-image-container:hover::after {
+        opacity: 1; /* Show the styled tooltip */
+        visibility: visible; /* Show the styled tooltip */
+    }
+
+    #page-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    #page-button-container button {
+        margin: 0 0.5rem;
+    }
+
+#page-button-container button:hover {
+    background-color: deepskyblue;
 }
 
 

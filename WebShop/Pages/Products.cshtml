@@ -12,6 +12,7 @@
     </head>
       <body>
         <h1>Products</h1>
+
         <div class="products">
             @foreach (var product in Model.Products)
             {
@@ -21,11 +22,11 @@
                     </div>
                     <div class="product-details">
                         <h4 class="product-name">@product.Name</h4>
-                        <p class="product-price">@product.Price :-</p>
-                        <a asp-asp-page="ProductDetails" asp-route-id="@product.ProductId">Visa produktdetaljer</a>
-                        <form method="post" asp-asp-page-handler="AddToCart">
+                        <p class="product-price">@product.Price SEK</p>
+                        <a asp-page="ProductDetails" asp-route-id="@product.ProductId">Visa produktdetaljer</a>
+                        <form method="post" asp-page-handler="AddToCart">
                             <input type="hidden" name="productId" value="@product.ProductId">
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit">Lägg till i varukorg</button>
                         </form>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
             <button type="button" id="previousPageButton">
                 Previous page
             </button>
-            <button type="button" id="nextPageButton">
+            <button type="button" id="nextPageButton">  
                 Next page
             </button>
 

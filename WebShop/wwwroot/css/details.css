@@ -1,0 +1,13 @@
+﻿.product-details {
+    display: flex;
+    align-items: center; /* Centrera innehållet vertikalt */
+}
+
+    .product-details img {
+        flex: 0 0 auto; /* Bilden tar så mycket plats som den behöver */
+        margin-right: 2rem; /* Lägg till lite marginal till höger om bilden för avstånd */
+    }
+
+    .product-details li{
+        list-style: none;
+    }

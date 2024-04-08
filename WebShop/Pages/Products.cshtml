@@ -1,5 +1,6 @@
 ﻿@page
 @model WebShopProject.Pages.ProductsModel
+@using WebShopProject.Models
 @{
     <!DOCTYPE html>
     <html>
@@ -15,15 +16,30 @@
             @foreach (var product in Model.Products)
             {
                 <div class="product-item">
-                    <div class="product-image-container">
+                    <div class="product-image-container" title="@product.Description">
                         <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
                     </div>
                     <div class="product-details">
                         <h4 class="product-name">@product.Name</h4>
                         <p class="product-price">@product.Price :-</p>
+                        <a asp-asp-page="ProductDetails" asp-route-id="@product.ProductId">Visa produktdetaljer</a>
+                        <form method="post" asp-asp-page-handler="AddToCart">
+                            <input type="hidden" name="productId" value="@product.ProductId">
+                            <button type="submit">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             }
+        </div>
+        <div id="page-button-container">
+            
+            <button type="button" id="previousPageButton">
+                Previous page
+            </button>
+            <button type="button" id="nextPageButton">
+                Next page
+            </button>
+
         </div>
       </body>
     </html>

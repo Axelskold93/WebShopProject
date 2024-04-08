@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebShopProject.Data;
 using WebShopProject.Models;
@@ -9,7 +8,7 @@ namespace WebShopProject.Pages
     {
         private readonly AppDbContext _context;
 
-        public ProductsModel (AppDbContext context)
+        public ProductsModel(AppDbContext context)
         {
             _context = context;
         }
@@ -17,7 +16,7 @@ namespace WebShopProject.Pages
         public void OnGet()
         {
 
-            Products = _context.Products.ToList(); 
+            Products = _context.Products.ToList();
 
         }
     }

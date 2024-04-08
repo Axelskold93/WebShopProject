@@ -41,6 +41,7 @@ namespace WebShopProject.Data
                     Name = "Krislåda",
                     Description = "En fin låda som du kan plocka fram ifall det krisar.(Kan innehålla spår av nötter.)",
                     Price = 2999,
+                    Category = "Verktyg och utrustning",
                     ImagePath = "plastlåda.jpg"
 
                 });
@@ -49,6 +50,7 @@ namespace WebShopProject.Data
                     Name = "Tält",
                     Description = "Ett rymligt enmanna tält",
                     Price = 3499,
+                    Category = "Camping",
                     ImagePath = "smalltent.jpg"
                 });
 

@@ -1,11 +1,4 @@
-﻿
-
-
-body {
-    background-color: white;
-    font-family: Verdana, Geneva, Tahoma, Montserrat, sans-serif;
-}
-.products {
+﻿.products {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;

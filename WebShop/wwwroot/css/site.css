@@ -1,19 +1,9 @@
-html {
-    /*Bra storlek för att använda REM då 62.5% av 16px är 10*/
-    font-size: 62.5%;
-    scroll-behavior: smooth;
+body {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, Montserrat, sans-serif;
 }
 
-* {
-    font-size: 1.6rem;
-    font-family: Montserrat, Roboto, Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-button{
 
-}
 button:hover {
     background-color: rgb(238, 145, 24)
 }

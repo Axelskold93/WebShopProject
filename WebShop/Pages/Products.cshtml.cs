@@ -13,10 +13,30 @@ namespace WebShopProject.Pages
             _context = context;
         }
         public List<Product> Products { get; set; }
-        public void OnGet()
-        {
+        public int TotalPages { get; set; }
+        public int CurrentPage { get; set; }
 
-            Products = _context.Products.ToList();
+        public void OnGet(int? page)
+        {
+            const int PageSize = 10;
+            CurrentPage = page ?? 1;
+
+            var totalProducts = _context.Products.Count();
+            TotalPages = (int)Math.Ceiling(totalProducts / (double)PageSize);
+
+            if (CurrentPage > TotalPages)
+            {
+                CurrentPage = TotalPages;
+            }
+            if (CurrentPage < 1)
+            {
+                CurrentPage = 1;
+            }
+
+            Products = _context.Products
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
 
         }
     }

@@ -31,7 +31,6 @@
 }
 
 .products .product-details button {
-    display: flex;
     margin-top: 0.5rem;
     justify-content: right;
 }

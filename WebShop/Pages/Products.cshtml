@@ -24,11 +24,11 @@
                         <h4 class="product-name">@product.Name</h4>
                         <p class="product-price">@product.Price SEK</p>
                         <a asp-page="ProductDetails" asp-route-id="@product.ProductId">Visa produktdetaljer</a>
+                    </div>
                         <form method="post" asp-page-handler="AddToCart">
                             <input type="hidden" name="productId" value="@product.ProductId">
                             <button type="submit">Lägg till i varukorg</button>
                         </form>
-                    </div>
                 </div>
             }
         </div>

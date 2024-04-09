@@ -20,9 +20,10 @@
 }
 .product-details {
     margin: 1px;
+    margin-bottom: 1px;
 }
-.product-price,
-.product-description {
+.product-name,
+.product-price {
     margin: 0; 
     padding: 0;
 }
@@ -30,11 +31,6 @@
     transform: scale(1.1);
 }
 
-.products .product-details button {
-    margin-top: 0.5rem;
-    justify-content: right;
-}
-/* Hide the default browser tooltip */
 .product-image-container {
     position: relative;
 }

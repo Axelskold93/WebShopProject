@@ -38,6 +38,8 @@
 
 #page-button-container {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     margin: 20px 0;
 }
@@ -53,6 +55,7 @@
         transition: all 0.5s;
         cursor: pointer;
         font-size: 15px;
+        margin: 5px;
     }
 
         #page-button-container a:hover {
@@ -65,5 +68,8 @@
     }
 
     #page-button-container span {
+        display: block;
         align-self: center;
+        margin-top: 10px;
     }
+

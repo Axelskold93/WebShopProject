@@ -22,10 +22,15 @@ namespace WebShopProject.Pages
         public List<string> Categories { get; set; }
 
 
-        public void OnGet(int? page, string productName, string category)
+        public void OnGet(int? pageNumber, string productName, string category)
         {
+            if (pageNumber.HasValue)
+            {
+                CurrentPage = pageNumber.Value;
+            }
             const int PageSize = 10;
-            CurrentPage = page ?? 1;
+            
+            
 
             IQueryable<Product> productsQuery = _context.Products;
 
@@ -51,7 +56,7 @@ namespace WebShopProject.Pages
                 CurrentPage = 1;
             }
 
-            Products = _context.Products
+            Products = productsQuery
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();

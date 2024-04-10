@@ -11,12 +11,31 @@
         <link rel="stylesheet" href="~/css/products.css" />
     </head>
       <body>
-        <h1>Produkter</h1>
+
+        <form method="get" action="Products" class="search-form">
+            <label for="productName">Sök på produktnamn:</label>
+            <input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
+
+            <label for="category">Sök på kategori:</label>
+            <select id="category" name="category">
+                <option value="">Alla kategorier</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <h1>Products</h1>
+        <p>Current Page: @Model.CurrentPage</p>
         <div class="products">
             @for (int i = 0; i < Model.Products.Count; i++)
             {
                 var product = Model.Products[i];
                 <div class="product-item">
+                    <a href="ProductDetails?id=@product.ProductId" class="product-item-link">
                     <div class="product-image-container" title="@product.Description">
                         <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
                     </div>
@@ -24,11 +43,12 @@
                         <h4 class="product-name">@product.Name</h4>
                         <p class="product-price">@product.Price SEK</p>
                         <a asp-page="ProductDetails" asp-route-id="@product.ProductId">Visa produktdetaljer</a>
+                    </div>
+                    </a>
                         <form method="post" asp-page-handler="AddToCart">
                             <input type="hidden" name="productId" value="@product.ProductId">
                             <button type="submit">Lägg till i varukorg</button>
                         </form>
-                    </div>
                 </div>
                
             }

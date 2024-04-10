@@ -11,6 +11,23 @@
         <link rel="stylesheet" href="~/css/products.css" />
     </head>
       <body>
+
+        <form method="get" action="Products" class="search-form">
+            <label for="productName">Sök på produktnamn:</label>
+            <input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
+
+            <label for="category">Sök på kategori:</label>
+            <select id="category" name="category">
+                <option value="">Alla kategorier</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+
         <h1>Products</h1>
         <p>Current Page: @Model.CurrentPage</p>
         <div class="products">

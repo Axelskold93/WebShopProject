@@ -22,7 +22,7 @@ namespace WebShopProject.Pages
             CurrentPage = page ?? 1;
 
             var totalProducts = _context.Products.Count();
-            TotalPages = (int)Math.Ceiling(totalProducts / (double)PageSize);
+            TotalPages = (int)Math.Ceiling((double)totalProducts / (double)PageSize);
 
             if (CurrentPage > TotalPages)
             {

@@ -67,3 +67,7 @@
     #page-button-container span {
         align-self: center;
     }
+    .product-item-link {
+        text-decoration: none;
+        color: black;
+    }

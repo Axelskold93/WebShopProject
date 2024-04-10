@@ -22,10 +22,15 @@ namespace WebShopProject.Pages
 		public List<string?> Categories { get; set; } = new List<string?>();
 
 
-		public void OnGet(int? page, string productName, string category)
-		{
-			const int PageSize = 10;
-			CurrentPage = page ?? 1;
+        public void OnGet(int? pageNumber, string productName, string category)
+        {
+            if (pageNumber.HasValue)
+            {
+                CurrentPage = pageNumber.Value;
+            }
+            const int PageSize = 10;
+            
+            
 
 			IQueryable<Product> productsQuery = _context.Products;
 
@@ -39,8 +44,8 @@ namespace WebShopProject.Pages
 				productsQuery = productsQuery.Where(p => p.Category.Contains(category));
 			}
 
-			var totalProducts = _context.Products.Count();
-			TotalPages = (int)Math.Ceiling(totalProducts / (double)PageSize);
+            var totalProducts = _context.Products.Count();
+            TotalPages = (int)Math.Ceiling((double)totalProducts / (double)PageSize);
 
 			if (CurrentPage > TotalPages)
 			{
@@ -51,10 +56,10 @@ namespace WebShopProject.Pages
 				CurrentPage = 1;
 			}
 
-			Products = _context.Products
-				.Skip((CurrentPage - 1) * PageSize)
-				.Take(PageSize)
-				.ToList();
+            Products = productsQuery
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
 
 			Categories = _context.Products.Select(p => p.Category).Distinct().ToList();
 

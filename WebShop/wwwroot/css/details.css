@@ -1,4 +1,6 @@
-﻿.product-details {
+﻿
+
+.product-details {
     display: flex;
     align-items: center; /* Center the content vertically */
 }
@@ -8,9 +10,10 @@
         max-height: 200px; /* Set a maximum height for the image */
         width: auto; /* Let the browser calculate the appropriate width based on the aspect ratio */
         height: auto; /* Let the browser calculate the appropriate height based on the aspect ratio */
-        margin-right: 2rem; /* Add margin to the right for spacing */
+        margin-right: 1rem; /* Add margin to the right for spacing */
     }
 
     .product-details li {
         list-style: none;
+        padding: 5px;
     }

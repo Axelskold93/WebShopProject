@@ -19,8 +19,8 @@
     background-color: white;
 }
 .product-details {
-    margin: 1px;
-    margin-bottom: 1px;
+    margin: 2px;
+    padding: 10px;
 }
 .product-name,
 .product-price {

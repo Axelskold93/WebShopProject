@@ -92,7 +92,7 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Campingkök med brännare",
+                    Name = "Campingkök",
                     Description = "Ett portabelt campingkök med gasbrännare.",
                     Price = 399,
                     Category = "Matlagning",
@@ -110,7 +110,7 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "LED-ficklampa med dynamo",
+                    Name = "LED-ficklampa",
                     Description = "En ficklampa som laddas med hjälp av en inbyggd dynamo.",
                     Price = 129,
                     Category = "Belysning",
@@ -164,8 +164,8 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Värmeljus med 36 timmars brinntid",
-                    Description = "Värmeljus för långvarig belysning.",
+                    Name = "Värmeljus",
+                    Description = "Värmeljus för långvarig belysning upp till 36 timmars brinntid.",
                     Price = 49,
                     Category = "Belysning",
                     ImagePath = "long_lasting_candles.jpg"
@@ -227,7 +227,7 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Självuppvärmande måltider (3-pack)",
+                    Name = "Självuppvärmande måltider",
                     Description = "Färdiga måltider som värms upp av kemisk reaktion.",
                     Price = 149,
                     Category = "Matlagning",
@@ -254,8 +254,8 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Nödsignalreflektorer (4-pack)",
-                    Description = "Reflekterande signaler för att öka synligheten vid nödsituationer.",
+                    Name = "Nödsignalreflektorer",
+                    Description = "Reflekterande signaler för att öka synligheten vid nödsituationer. 4-pack.",
                     Price = 99,
                     Category = "Säkerhet och signalering",
                     ImagePath = "emergency_reflectors.jpg"
@@ -272,7 +272,7 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Multifunktionell axelväska",
+                    Name = "Ryggsäck",
                     Description = "En mångsidig väska för att bära nödvändiga tillbehör och utrustning.",
                     Price = 179,
                     Category = "Förvaring och transport",

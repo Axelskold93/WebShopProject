@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebShopProject.Data;
 using WebShopProject.Models;
@@ -7,12 +8,16 @@ namespace WebShopProject.Pages
 	public class ProductsModel : PageModel
 	{
 		private readonly AppDbContext _context;
+		private readonly AccessControl _accessControl;
 
-		public ProductsModel(AppDbContext context)
-		{
+		public ProductsModel(AppDbContext context, AccessControl accessControl)
+		{ 
 			_context = context;
+			Cart = new List<Product>();
+			_accessControl = accessControl;
 		}
 		public List<Product>? Products { get; set; }
+		public List<Product> Cart;
 		public int TotalPages { get; set; }
 		public int CurrentPage { get; set; }
 
@@ -23,6 +28,7 @@ namespace WebShopProject.Pages
 
 
         public void OnGet(int? pageNumber, string productName, string category)
+			 
         {
             if (pageNumber.HasValue)
             {
@@ -66,6 +72,21 @@ namespace WebShopProject.Pages
 			SearchName = productName;
 			SearchCategory = category;
 
+		}
+		public ActionResult OnPostAddToCart(int productId, int currentPage)
+		{
+			Product product = _context.Products.Find(productId);
+			product.Account = _context.Accounts.Find(_accessControl.LoggedInAccountID);
+			if (product.Account != null)
+			{
+				
+				_context.SaveChanges();
+			}
+			
+			Products = _context.Products.ToList();
+			
+
+			return RedirectToPage(new { pageNumber = currentPage });
 		}
 	}
 }

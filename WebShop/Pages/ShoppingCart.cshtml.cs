@@ -11,49 +11,72 @@ namespace WebShop.Pages
         private readonly AccessControl _accessControl;
         public List<Product>? Products { get; set; }
         public List<Product> Cart;
-		
-
-		public decimal TotalPrice { get; set; }
-
-		public ShoppingCartModel(AppDbContext context, AccessControl accessControl)
-		{
-			_context = context;
-			Cart = new List<Product>();
-			_accessControl = accessControl;
-		}
 
 
+        public decimal TotalPrice { get; set; }
 
-		public void OnGet()
+        public ShoppingCartModel(AppDbContext context, AccessControl accessControl)
+        {
+            _context = context;
+            Cart = new List<Product>();
+            _accessControl = accessControl;
+        }
+
+
+
+        public void OnGet()
         {
             Products = _context.Products.ToList();
 
-			Cart = _context.Products.Where(p => p.Account != null && p.Account.ID == _accessControl.LoggedInAccountID).ToList();
-			TotalPrice = (decimal)Cart.Sum(p => p.Price);
+            Cart = _context.Products.Where(p => p.Account != null && p.Account.ID == _accessControl.LoggedInAccountID).ToList();
+            TotalPrice = (decimal)Cart.Sum(p => p.Price);
         }
         public ActionResult OnPostAddToCart(int productId)
         {
             Product product = _context.Products.Find(productId);
             product.Account = _context.Accounts.Find(_accessControl.LoggedInAccountID);
-			if (product.Account != null)
-			{
-				product.Account.ID = _accessControl.LoggedInAccountID;
-				_context.SaveChanges();
-			}
-			Cart.Add(product);
-			Products = _context.Products.ToList();
+            if (product.Account != null)
+            {
+                product.Account.ID = _accessControl.LoggedInAccountID;
+                _context.SaveChanges();
+            }
+            Cart.Add(product);
+            Products = _context.Products.ToList();
 
-			return RedirectToPage();
-		}
-		public ActionResult OnPostRemoveFromCart(int productId)
-		{
-			Product product = _context.Products.Find(productId);
-			product.Account = null;
-			_context.SaveChanges();
-			Cart.Remove(product);
-			Products = _context.Products.ToList();
-			return RedirectToPage();
+            return RedirectToPage();
+        }
+        public ActionResult OnPostRemoveFromCart(int productId)
+        {
+            Product product = _context.Products.Find(productId);
+            product.Account = null;
+            _context.SaveChanges();
+            Cart.Remove(product);
+            Products = _context.Products.ToList();
+            return RedirectToPage();
 
-		}
+        }
+        public IActionResult OnPostClearCart()
+        {
+            try
+            {
+                foreach (var product in Cart)
+                {
+                    product.Account = null;
+                }
+                _context.SaveChanges();
+                Cart.Clear();
+                Products = _context.Products.ToList();
+
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"An error occurred while clearing the cart: {ex.Message}");
+                // Optionally, redirect to an error page or display an error message to the user
+                return Page();
+            }
+        }
+
     }
 }

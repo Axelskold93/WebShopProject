@@ -227,7 +227,7 @@ namespace WebShopProject.Data
 
                 database.Products.Add(new Product
                 {
-                    Name = "Självuppvärmande måltider",
+                    Name = "Färdiga måltider",
                     Description = "Färdiga måltider som värms upp av kemisk reaktion.",
                     Price = 149,
                     Category = "Matlagning",

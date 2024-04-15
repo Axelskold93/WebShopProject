@@ -36,11 +36,13 @@
 						<div class="product-details">
 							<h4 class="product-name">@cartItem.Product.Name</h4>
 							<p class="product-price">@cartItem.Product.Price SEK</p>
+							<p class="product-quantity">Antal: @cartItem.Quantity </p>
 						</div>
+
 					</a>
 					<form method="post" asp-page-handler="RemoveFromCart">
 						<input type="hidden" name="productId" value="@cartItem.ProductID">
-						<button type="submit">Ta bort från varukorg</button>
+						<button type="submit">Töm varukorg</button>
 					</form>
 				</div>
 			}

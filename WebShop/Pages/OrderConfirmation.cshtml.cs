@@ -7,8 +7,8 @@ using WebShopProject.Models;
 
 namespace WebShop.Pages
 {
-    public class OrderConfirmationModel : PageModel
-    {
+	public class OrderConfirmationModel : PageModel
+	{
 
 		private readonly AppDbContext _context;
 		private readonly AccessControl _accessControl;
@@ -23,6 +23,7 @@ namespace WebShop.Pages
 		public decimal TotalPrice { get; set; }
 		public int Quantity { get; set; }
 
+
 		public void OnGet()
 		{
 
@@ -30,11 +31,11 @@ namespace WebShop.Pages
 			if (currentAccount != null)
 			{
 
-				var accountId = currentAccount.ID;
+				var accountIdAdd = currentAccount.ID;
 
 				Cart = _context.Carts.Include(c => c.CartItems)
 									 .ThenInclude(ci => ci.Product)
-									 .FirstOrDefault(c => c.AccountID == accountId);
+									 .FirstOrDefault(c => c.AccountID == accountIdAdd);
 
 			}
 			Quantity = 0;

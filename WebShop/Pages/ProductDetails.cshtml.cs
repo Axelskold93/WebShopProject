@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebShop.Models;
 using WebShopProject.Data;
 using WebShopProject.Models;
 
@@ -9,16 +10,14 @@ namespace WebShopProject.Pages
     {
         private readonly AppDbContext _context;
         private readonly AccessControl _accessControl;
+		public Product Product { get; set; }
+		public Cart Cart { get; set; }
 
-        public ProductDetailsModel(AppDbContext context, AccessControl accessControl)
+		public ProductDetailsModel(AppDbContext context, AccessControl accessControl)
         {
             _context = context;
-            Cart = new List<Product>();
             _accessControl = accessControl;
         }
-
-        public Product Product { get; set; }
-        public List<Product> Cart;
 
         public IActionResult OnGet(int? id)
         {
@@ -37,17 +36,27 @@ namespace WebShopProject.Pages
             return Page();
         }
 
-        public ActionResult OnPostAddToCart(int productId, int currentPage)
-        {
-            Product product = _context.Products.Find(productId);
-            product.Account = _context.Accounts.Find(_accessControl.LoggedInAccountID);
-            if (product.Account != null)
-            {
-                Cart.Add(product);
-                _context.SaveChanges();
-            }
+		public ActionResult OnPostAddToCart(int productId)
+		{
+			Product product = _context.Products.Find(productId);
+			Account currentAccount = _context.Accounts.Find(_accessControl.LoggedInAccountID);
 
-            return RedirectToPage("/ProductDetails", new { id = productId });
+			if (product != null && currentAccount != null)
+			{
+				if (currentAccount.Cart == null)
+				{
+					currentAccount.Cart = new Cart { AccountID = currentAccount.ID };
+					_context.Carts.Add(currentAccount.Cart);
+				}
+
+				CartItem cartItem = new CartItem { CartID = currentAccount.Cart.ID, ProductID = productId };
+				currentAccount.Cart.CartItems.Add(cartItem);
+				_context.SaveChanges();
+			}
+
+			
+
+			return RedirectToPage("/ProductDetails", new { id = productId });
         }
 
     }

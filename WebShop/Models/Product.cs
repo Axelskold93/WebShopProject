@@ -1,4 +1,6 @@
-﻿namespace WebShopProject.Models
+﻿using WebShop.Models;
+
+namespace WebShopProject.Models
 {
     public class Product
     {
@@ -10,10 +12,5 @@
         public string? Category { get; set; }
 
         public string? ImagePath { get; set; }
-        public int? AccountID { get; set; }
-        public Account? Account { get; set; }
-
-
-
     }
 }

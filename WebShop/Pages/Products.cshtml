@@ -47,6 +47,7 @@
                     </a>
                     <form method="post" asp-page="Products" asp-page-handler="AddToCart">
                         <input type="hidden" name="productId" value="@product.ProductId">
+                        <input type="hidden" name="currentPage" value="@Model.CurrentPage">
                         <button type="submit">Lägg till i varukorg</button>
                     </form>
                 </div>

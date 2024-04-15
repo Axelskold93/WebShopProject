@@ -1,4 +1,6 @@
-﻿namespace WebShopProject.Models
+﻿using WebShop.Models;
+
+namespace WebShopProject.Models
 {
 	public class Account
 	{
@@ -6,6 +8,6 @@
 		public string OpenIDIssuer { get; set; }
 		public string OpenIDSubject { get; set; }
 		public string Name { get; set; }
-		public List<Product> Products { get; set; }
-	}
+		public Cart Cart { get; set; }
+    }
 }

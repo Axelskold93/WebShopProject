@@ -15,9 +15,9 @@
 
     <h2>Beställda produkter:</h2>
     <ul>
-        @foreach (var product in Model.Cart)
+        @foreach (var cartItem in Model.Cart.CartItems)
         {
-            <li>@product.Name - @product.Price.ToString("C0")</li>
+            <li>@cartItem.Product.Name - @cartItem.Product.Price.ToString("C0")</li>
         }
     </ul>
 

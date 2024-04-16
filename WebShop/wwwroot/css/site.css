@@ -1,6 +1,7 @@
 body {
     background-color: white;
     font-family: Verdana, Geneva, Tahoma, Montserrat, sans-serif;
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -8,13 +9,36 @@ h1 {
     justify-content: center;
 }
 
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+a:hover, a:active {
+    background-color: lightcoral;
+}
+
 button:hover {
     background-color: rgb(238, 145, 24)
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;   
 }
 
 .product-details {
     display: flex;
     align-items: center; /* Center the content vertically */
+    margin: 2px;
+    padding: 10px;
 }
 
     .product-details img {
@@ -38,6 +62,12 @@ button:hover {
     margin-left: 10px;
 }
 
+.products .product-details {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
 .product-item {
     width: 250px;
     height: 300px;
@@ -54,11 +84,6 @@ button:hover {
     background-color: white;
 }
 
-.product-details {
-    margin: 2px;
-    padding: 10px;
-}
-
 .product-name,
 .product-price {
     margin: 0;
@@ -72,7 +97,6 @@ button:hover {
 .product-image-container {
     position: relative;
 }
-
 
 #page-button-container {
     display: flex;

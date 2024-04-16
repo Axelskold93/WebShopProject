@@ -10,12 +10,11 @@ namespace WebShopProject.Pages
 	public class ProductsModel : PageModel
 	{
 		private readonly AppDbContext _context;
-		private readonly AccessControl _accessControl;
+		
 
-		public ProductsModel(AppDbContext context, AccessControl accessControl)
+		public ProductsModel(AppDbContext context)
 		{ 
 			_context = context;
-			_accessControl = accessControl;
 		}
 		public Cart? Cart { get; set; }
 
@@ -25,12 +24,12 @@ namespace WebShopProject.Pages
 		public int CurrentPage { get; set; }
 		public string? SearchName { get; set; }
 		public string? SearchCategory { get; set; }
-		public Account CurrentAccount { get; set; }
 		public List<string?> Categories { get; set; } = new List<string?>();
 
 
         public void OnGet(int? pageNumber, string productName, string category)	 
         {
+			
             if (pageNumber.HasValue)
             {
                 CurrentPage = pageNumber.Value;
@@ -74,43 +73,6 @@ namespace WebShopProject.Pages
 			
 
 		}
-		public ActionResult OnPostAddToCart(int productId, int currentPage)
-		{
 		
-			CurrentAccount = _context.Accounts.Include(a => a.Cart).ThenInclude(c => c.CartItems).FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
-
-
-			Product product = _context.Products.Find(productId);
-
-			if (product != null && CurrentAccount != null)
-			{
-				if (CurrentAccount.Cart == null)
-				{
-					CurrentAccount.Cart = new Cart { AccountID = CurrentAccount.ID };
-					CurrentAccount.Cart.CartItems = new List<CartItem>();
-					_context.Carts.Add(CurrentAccount.Cart);
-				}
-
-				
-				
-					var existingCartItem = CurrentAccount.Cart.CartItems.FirstOrDefault(item => item.ProductID == productId);
-				    
-					if (existingCartItem != null)
-					{
-						existingCartItem.Quantity++;
-					}
-				 
-				    else
-				    {
-					CartItem cartItem = new CartItem { CartID = CurrentAccount.Cart.ID, ProductID = productId, Quantity = 1 };
-					CurrentAccount.Cart.CartItems.Add(cartItem);
-				    }
-
-				
-			}
-			_context.SaveChanges();
-			Products = _context.Products.ToList();
-			return RedirectToPage(new { pageNumber = currentPage });
-		}
 	}
 }

@@ -21,6 +21,7 @@ namespace WebShop.Pages
 
 		public Cart? Cart { get; set; }
 		public decimal TotalPrice { get; set; }
+		public decimal TotalPricePerProduct { get; set; }	
 		public int Quantity { get; set; }
 
 
@@ -52,6 +53,7 @@ namespace WebShop.Pages
 				foreach (var item in Cart.CartItems)
 				{
 					TotalPrice += item.Product.Price * item.Quantity;
+					TotalPricePerProduct = item.Product.Price * item.Quantity;
 				}
 			}
 		}

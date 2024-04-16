@@ -76,7 +76,7 @@ namespace WebShopProject.Pages
 			}
 			_context.SaveChanges();
 			Products = _context.Products.ToList();
-			return RedirectToPage("/ProductDetails", new { id = productId });
+			return RedirectToPage("/ProductDetails", new { id = productId, currentPage = CurrentPage });
 		}
 	}
 }

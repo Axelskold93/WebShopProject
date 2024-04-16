@@ -32,21 +32,28 @@
         <h1>Produkter</h1>
 
         <div class="products">
-            @for (int i = 0; i < Model.Products.Count; i++)
+        @if (Model.Products == null || Model.Products.Count == 0)
+			{
+				<p>Inga produkter hittades.</p>
+			}
+            else 
             {
-                var product = Model.Products[i];
-                <div class="product-item">
-                <a href="ProductDetails?id=@product.ProductId&currentPage=@Model.CurrentPage" class="product-item-link">
-                    <div class="product-image-container" title="@product.Description">
-                        <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
-                    </div>
-                    <div class="product-details">
-                        <h4 class="product-name">@product.Name</h4>
-                        <p class="product-price">@product.Price SEK</p>
-                    </div>
-                    </a>
-                </div>
-               
+                    
+                    @for (int i = 0; i < Model.Products.Count; i++)
+                    {
+                        var product = Model.Products[i];
+                        <div class="product-item">
+                            <a href="ProductDetails?id=@product.ProductId&currentPage=@Model.CurrentPage" class="product-item-link">
+                                <div class="product-image-container" title="@product.Description">
+                                    <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
+                                </div>
+                                <div class="product-details">
+                                    <h4 class="product-name">@product.Name</h4>
+                                    <p class="product-price">@product.Price SEK</p>
+                                </div>
+                            </a>
+                        </div>   
+                    }
             }
         </div>
         
@@ -63,7 +70,7 @@
             
         </div>
         <div id="current-page-container">
-        <span id="current-page">Sida @Model.CurrentPage of @Model.TotalPages</span>
+            <span id="current-page">Sida @Model.CurrentPage of @Model.TotalPages</span>
         </div>
         
       </body>

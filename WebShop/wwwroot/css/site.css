@@ -72,7 +72,6 @@ button:hover {
     width: 250px;
     height: 300px;
     transition: transform 0.3s ease;
-    background-color: white;
     margin: 5px;
     padding: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -81,7 +80,6 @@ button:hover {
 .product-image {
     height: 200px;
     width: 250px;
-    background-color: white;
 }
 
 .product-name,
@@ -147,4 +145,12 @@ button:hover {
     grid-gap: 20px;
     justify-content: center;
     margin: 20px;
+}
+
+#shopping-cart-container .product-image {
+    height: 100px;
+    width: 150px;
+}
+
+.shopping-cart-buttons {
 }

@@ -15,6 +15,9 @@
 		<h1>Varukorg</h1>
 		<div class="shopping-cart">
 			<a asp-page="./Products">Tillbaka till produkter</a>
+		<form method="post" asp-page-handler="EmptyCart">
+			<button type="submit">Töm varukorg</button>
+		</form>
 		@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
 			{
 			    <p>Du har @Model.Cart.CartItems.Count produkter i din varukorg.</p>
@@ -35,15 +38,12 @@
 						</div>
 						<div class="product-details">
 							<h4 class="product-name">@cartItem.Product.Name</h4>
-							<p class="product-price">@cartItem.Product.Price SEK</p>
+							<p class="product-price"> Pris:@cartItem.Product.Price SEK</p>
 							<p class="product-quantity">Antal: @cartItem.Quantity </p>
 						</div>
 
 					</a>
-					<form method="post" asp-page-handler="RemoveFromCart">
-						<input type="hidden" name="productId" value="@cartItem.ProductID">
-						<button type="submit">Töm varukorg</button>
-					</form>
+					
 				</div>
 			}
 		}

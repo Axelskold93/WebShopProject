@@ -59,6 +59,7 @@ namespace WebShopProject.Pages
 
 			return RedirectToPage("/ProductDetails", new { id = productId });
 		}
+		
 
 	}
 }

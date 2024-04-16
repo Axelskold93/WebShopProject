@@ -139,18 +139,29 @@ button:hover {
     justify-content: center;
 }
 
-.shopping-cart {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 20px;
-    justify-content: center;
-    margin: 20px;
+.shopping-cart img {
+    height: 50px;
+    width: 75px;
 }
 
-#shopping-cart-container .product-image {
-    height: 100px;
-    width: 150px;
+.shopping-cart-buttons-container {
+    display: flex;
+    align-content: center;
+    margin-top: 10px;
 }
 
-.shopping-cart-buttons {
+.shopping-cart-buttons-container button {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    border: none;
+    height: 47.2px;
+    margin-right: 10px;
 }
+    .shopping-cart-buttons-container button:hover {
+        background-color: lightcoral;
+    }

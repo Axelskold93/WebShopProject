@@ -18,6 +18,8 @@ namespace WebShopProject.Pages
 			_accessControl = accessControl;
 		}
 		public Cart? Cart { get; set; }
+
+		
 		public List<Product>? Products { get; set; }
 		public int TotalPages { get; set; }
 		public int CurrentPage { get; set; }
@@ -74,6 +76,7 @@ namespace WebShopProject.Pages
 		}
 		public ActionResult OnPostAddToCart(int productId, int currentPage)
 		{
+		
 			CurrentAccount = _context.Accounts.Include(a => a.Cart).ThenInclude(c => c.CartItems).FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
 
 
@@ -88,11 +91,24 @@ namespace WebShopProject.Pages
 					_context.Carts.Add(CurrentAccount.Cart);
 				}
 
-				CartItem cartItem = new CartItem { CartID = CurrentAccount.Cart.ID, ProductID = productId };
-				CurrentAccount.Cart.CartItems.Add(cartItem);
-				_context.SaveChanges();
-			}
+				
+				
+					var existingCartItem = CurrentAccount.Cart.CartItems.FirstOrDefault(item => item.ProductID == productId);
+				    
+					if (existingCartItem != null)
+					{
+						existingCartItem.Quantity++;
+					}
+				 
+				    else
+				    {
+					CartItem cartItem = new CartItem { CartID = CurrentAccount.Cart.ID, ProductID = productId, Quantity = 1 };
+					CurrentAccount.Cart.CartItems.Add(cartItem);
+				    }
 
+				
+			}
+			_context.SaveChanges();
 			Products = _context.Products.ToList();
 			return RedirectToPage(new { pageNumber = currentPage });
 		}

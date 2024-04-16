@@ -1,7 +1,7 @@
 ﻿@page
 @model WebShopProject.Pages.ProductsModel
 @using WebShopProject.Models
-@{
+{
     <!DOCTYPE html>
     <html>
     <head>
@@ -36,7 +36,7 @@
             {
                 var product = Model.Products[i];
                 <div class="product-item">
-                    <a href="ProductDetails?id=@product.ProductId" class="product-item-link">
+                <a href="ProductDetails?id=@product.ProductId&currentPage=@Model.CurrentPage" class="product-item-link">
                     <div class="product-image-container" title="@product.Description">
                         <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
                     </div>

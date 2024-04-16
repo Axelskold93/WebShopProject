@@ -13,15 +13,18 @@ namespace WebShopProject.Pages
 		private readonly AccessControl _accessControl;
 		public Product Product { get; set; }
 		public Cart Cart { get; set; }
-
+		public Account CurrentAccount { get; set; }
+		public List<Product>? Products { get; set; }
+		public int CurrentPage { get; set; }	
 		public ProductDetailsModel(AppDbContext context, AccessControl accessControl)
 		{
 			_context = context;
 			_accessControl = accessControl;
 		}
 
-		public IActionResult OnGet(int? id)
+		public IActionResult OnGet(int? id, int currentPage)
 		{
+			CurrentPage = currentPage;
 			if (id == null)
 			{
 				return NotFound();
@@ -36,30 +39,44 @@ namespace WebShopProject.Pages
 
 			return Page();
 		}
-
 		public ActionResult OnPostAddToCart(int productId)
 		{
-			Product product = _context.Products.Find(productId);
-			Account currentAccount = _context.Accounts.Include(a => a.Cart.CartItems).Single(account => account.ID == _accessControl.LoggedInAccountID);
+			
 
-			if (product != null && currentAccount != null)
+			CurrentAccount = _context.Accounts.Include(a => a.Cart).ThenInclude(c => c.CartItems).FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
+
+
+			Product product = _context.Products.Find(productId);
+
+			if (product != null && CurrentAccount != null)
 			{
-				if (currentAccount.Cart == null)
+				if (CurrentAccount.Cart == null)
 				{
-					currentAccount.Cart = new Cart { AccountID = currentAccount.ID };
-					_context.Carts.Add(currentAccount.Cart);
+					CurrentAccount.Cart = new Cart { AccountID = CurrentAccount.ID };
+					CurrentAccount.Cart.CartItems = new List<CartItem>();
+					_context.Carts.Add(CurrentAccount.Cart);
 				}
 
-				CartItem cartItem = new CartItem { CartID = currentAccount.Cart.ID, ProductID = productId };
-				currentAccount.Cart.CartItems.Add(cartItem);
-				_context.SaveChanges();
+
+
+				var existingCartItem = CurrentAccount.Cart.CartItems.FirstOrDefault(item => item.ProductID == productId);
+
+				if (existingCartItem != null)
+				{
+					existingCartItem.Quantity++;
+				}
+
+				else
+				{
+					CartItem cartItem = new CartItem { CartID = CurrentAccount.Cart.ID, ProductID = productId, Quantity = 1 };
+					CurrentAccount.Cart.CartItems.Add(cartItem);
+				}
+
+
 			}
-
-
-
+			_context.SaveChanges();
+			Products = _context.Products.ToList();
 			return RedirectToPage("/ProductDetails", new { id = productId });
 		}
-		
-
 	}
 }

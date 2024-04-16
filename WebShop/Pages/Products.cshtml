@@ -1,35 +1,35 @@
 ﻿@page
 @model WebShopProject.Pages.ProductsModel
 @using WebShopProject.Models
-{
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Products</title>
-        <link rel="stylesheet" href="~/css/site.css" />
-    </head>
-      <body>
+@{
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Products</title>
+		<link rel="stylesheet" href="~/css/site.css" />
+	</head>
+	<body>
 
-        <form method="get" action="Products" class="search-form">
-            <label for="productName">Sök på produktnamn:</label>
-            <input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
+		<form method="get" action="Products" class="search-form">
+			<label for="productName">Sök på produktnamn:</label>
+			<input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
 
-            <label for="category">Sök på kategori:</label>
-            <select id="category" name="category">
-                <option value="">Alla kategorier</option>
-                @foreach (var category in Model.Categories)
-                {
-                    <option value="@category">@category</option>
-                }
-            </select>
+			<label for="category">Sök på kategori:</label>
+			<select id="category" name="category">
+				<option value="">Alla kategorier</option>
+				@foreach (var category in Model.Categories)
+				{
+					<option value="@category">@category</option>
+				}
+			</select>
 
-            <button type="submit">Sök</button>
-        </form>
-        <a asp-page="./ShoppingCart">Till varukorg</a>
+			<button type="submit">Sök</button>
+		</form>
+		<a asp-page="./ShoppingCart">Till varukorg</a>
 
-        <h1>Produkter</h1>
+		<h1>Produkter</h1>
 
         <div class="products">
         @if (Model.Products == null || Model.Products.Count == 0)

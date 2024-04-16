@@ -27,6 +27,7 @@
 			<li>
 				<form method="post" asp-page-handler="AddToCart">
 					<input type="hidden" name="productId" value="@Model.Product.ProductId">
+					<input type="hidden" name="currentPage" value="@Model.CurrentPage">
 					<button type="submit">Lägg till i varukorg</button>
 				</form>
 			</li>

@@ -1,58 +1,58 @@
-﻿@page
-@model WebShop.Pages.ShoppingCartModel
+﻿	@page
+	@model WebShop.Pages.ShoppingCartModel
 @{
 }
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Shopping Cart</title>
 	<link rel="stylesheet" href="~/css/shoppingCart.css" />
-	</head>
-	<body>
-		<h1>Varukorg</h1>
-		<div class="shopping-cart">
-			<a asp-page="./Products">Tillbaka till produkter</a>
-		<form method="post" asp-page-handler="EmptyCart">
-			<button type="submit">Töm varukorg</button>
-		</form>
-		@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
-			{
-			    <p>Du har @Model.Cart.CartItems.Count produkter i din varukorg.</p>
-			    <p>Totalt pris: @Model.TotalPrice SEK</p>
-			}
-			else
-			{
-                <p>Din varukorg är tom.</p>
-			}
-		@if (Model.Cart != null)
-		{
-			@foreach (var cartItem in Model.Cart.CartItems)
-			{
-				<div class="product-item">
-					<a href="ProductDetails?id=@cartItem.ProductID" class="product-item-link">
-						<div class="product-image-container" title="@cartItem.Product.Description">
-							<img src="~/images/@cartItem.Product.ImagePath" alt="@cartItem.Product.Name" class="product-image" />
-						</div>
-						<div class="product-details">
-							<h4 class="product-name">@cartItem.Product.Name</h4>
-							<p class="product-price"> Pris:@cartItem.Product.Price SEK</p>
-							<p class="product-quantity">Antal: @cartItem.Quantity </p>
-						</div>
+</head>
+<body>
+	<h1>Varukorg</h1>
+	<a asp-page="./Products">Tillbaka till produktsidan</a>
+	<div class="shopping-cart">
 
-					</a>
-					
-				</div>
-			}
+		@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
+		{
+			<p>Du har @Model.Cart.CartItems.Count produkter i din varukorg.</p>
+			<p>Totalt pris: @Model.TotalPrice.ToString("C0")</p>
+			<table>
+				<tr>
+					<th></th>
+					<th>Produktnamn</th>
+					<th>Pris</th>
+					<th>Antal</th>
+				</tr>
+				@foreach (var cartItem in Model.Cart.CartItems)
+				{
+
+					<tr>
+						<td><img src="~/images/@cartItem.Product.ImagePath" alt="@cartItem.Product.Name" /></td>
+						<td>@cartItem.Product.Name</td>
+						<td>@cartItem.Product.Price.ToString("C0")</td>
+						<td>@cartItem.Quantity</td>
+					</tr>
+				}
+			</table>
+		}
+		else
+		{
+			<p>Din varukorg är tom.</p>
 		}
 
-		</div>
-		@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
-	    {
+	</div>
+	<div class="shopping-cart-buttons-container"
+	<form method="post" asp-page-handler="EmptyCart">
+		<button type="submit">Töm varukorg</button>
+	</form>
+	@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
+	{
 		<a asp-page="./OrderConfirmation" class="btn btn-primary">Köp</a>
-	    }
-		
-		</body>
+	}
+	</div>
+</body>
 </html>

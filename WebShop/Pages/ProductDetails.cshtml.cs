@@ -15,7 +15,7 @@ namespace WebShopProject.Pages
 		public Cart Cart { get; set; }
 		public Account CurrentAccount { get; set; }
 		public List<Product>? Products { get; set; }
-		public int CurrentPage { get; set; }	
+		public int CurrentPage { get; set; }
 		public ProductDetailsModel(AppDbContext context, AccessControl accessControl)
 		{
 			_context = context;
@@ -39,9 +39,10 @@ namespace WebShopProject.Pages
 
 			return Page();
 		}
-		public ActionResult OnPostAddToCart(int productId)
+		public ActionResult OnPostAddToCart(int productId, int currentPage)
 		{
-			
+
+			CurrentPage = currentPage;
 
 			CurrentAccount = _context.Accounts.Include(a => a.Cart).ThenInclude(c => c.CartItems).FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
 

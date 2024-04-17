@@ -231,7 +231,7 @@ namespace WebShopProject.Data
 					Description = "Färdiga måltider som värms upp av kemisk reaktion.",
 					Price = 149,
 					Category = "Matlagning",
-					ImagePath = "self_heating_meals.png"
+					ImagePath = "self_heating_meals.jpg"
 				});
 
 				database.Products.Add(new Product

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using WebShop.Models;
@@ -57,5 +58,22 @@ namespace WebShop.Pages
 				}
 			}
 		}
-	}
+        public ActionResult OnPostEmptyCart()
+        {
+            Account CurrentAccount = _context.Accounts
+                .Include(a => a.Cart)
+                .ThenInclude(c => c.CartItems)
+                .FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
+
+            if (CurrentAccount != null && CurrentAccount.Cart != null)
+            {
+                CurrentAccount.Cart.CartItems.Clear();
+                _context.SaveChanges();
+            }
+
+            
+
+            return RedirectToPage("/index");
+        }
+    }
 }

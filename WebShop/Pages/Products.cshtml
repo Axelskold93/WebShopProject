@@ -27,9 +27,10 @@
 
 			<button type="submit">Sök</button>
 		</form>
-		<a asp-page="./ShoppingCart">Till varukorg</a>
+		
 
 		<h1>Produkter</h1>
+        <a asp-page="./ShoppingCart">Till varukorg</a>
 
         <div class="products">
         @if (Model.Products == null || Model.Products.Count == 0)

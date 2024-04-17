@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <div id="order-confirmation">
     <h1>Orderbekräftelse</h1>
    
 
@@ -28,6 +29,9 @@
     <p>Totalsumma för beställningen: @Model.TotalPrice.ToString("C0")</p>
     <p>Tack för din beställning!</p>
 
-	<a href="/Products" class="btn btn-primary">Tillbaka till söksidan</a>
+        <form method="post" asp-page-handler="EmptyCart">
+            <button type="submit">Tillbaka till startsidan</button>
+        </form>
+    </div>
 </body>
 </html>

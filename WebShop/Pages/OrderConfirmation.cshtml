@@ -21,12 +21,12 @@
         @foreach (var cartItem in Model.Cart.CartItems)
         {
             <li>
-                Namn: @cartItem.Product.Name - Pris/st: @cartItem.Product.Price.ToString("C0") - Antal: @cartItem.Quantity
+                @cartItem.Product.Name - Pris/st: @cartItem.Product.Price.ToString("C0") - Antal: @cartItem.Quantity
             </li>
         }
     </ul>
     
-    <p>Totalsumma för beställningen: @Model.TotalPrice.ToString("C0");</p>
+    <p>Totalsumma för beställningen: @Model.TotalPrice.ToString("C0")</p>
     <p>Tack för din beställning!</p>
 
         <form method="post" asp-page-handler="EmptyCart">

@@ -18,8 +18,6 @@
 
 		@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
 		{
-			<p>Du har @Model.Cart.CartItems.Count produkter i din varukorg.</p>
-			<p>Totalt pris: @Model.TotalPrice.ToString("C0")</p>
 			<table>
 				<tr>
 					<th></th>
@@ -38,21 +36,23 @@
 					</tr>
 				}
 			</table>
+			<p>Totalt pris: @Model.TotalPrice.ToString("C0")</p>
 		}
 		else
 		{
 			<p>Din varukorg är tom.</p>
 		}
+	<div class="shopping-cart-buttons-container">
 
-	</div>
-	<div class="shopping-cart-buttons-container"
-	<form method="post" asp-page-handler="EmptyCart">
-		<button type="submit">Töm varukorg</button>
-	</form>
+	
 	@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
 	{
+				<form method="post" asp-page-handler="EmptyCart">
+					<button type="submit">Töm varukorg</button>
+				</form>
 		<a asp-page="./OrderConfirmation" class="btn btn-primary">Köp</a>
 	}
+	</div>
 	</div>
 </body>
 </html>

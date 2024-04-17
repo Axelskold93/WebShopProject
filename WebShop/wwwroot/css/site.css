@@ -31,7 +31,7 @@ button:hover {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    margin-bottom: 10px;   
+    margin-bottom: 10px;
 }
 
 .product-details {
@@ -62,11 +62,11 @@ button:hover {
     margin-left: 10px;
 }
 
-.products .product-details {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-}
+    .products .product-details {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
 
 .product-item {
     width: 250px;
@@ -150,18 +150,19 @@ button:hover {
     margin-top: 10px;
 }
 
-.shopping-cart-buttons-container button {
-    background-color: #f44336;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    border: none;
-    height: 47.2px;
-    margin-right: 10px;
-}
-    .shopping-cart-buttons-container button:hover {
-        background-color: lightcoral;
+    .shopping-cart-buttons-container button {
+        background-color: #f44336;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        border: none;
+        height: 47.2px;
+        margin-right: 10px;
     }
+
+        .shopping-cart-buttons-container button:hover {
+            background-color: lightcoral;
+        }

@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Shopping Cart</title>
-	<link rel="stylesheet" href="~/css/shoppingCart.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
 	<h1>Varukorg</h1>
@@ -44,10 +44,10 @@
 			<p>Din varukorg är tom.</p>
 		}
 
-	</div>
-	<div class="shopping-cart-buttons-container"
-	<form method="post" asp-page-handler="EmptyCart">
-		<button type="submit">Töm varukorg</button>
+	</div>	
+	<div class="shopping-cart-buttons-container">
+	<form method="post" asp-page-handler="EmptyCart" class="asp-form">
+		<button type="submit" class="btn btn-primary">Töm varukorg</button>
 	</form>
 	@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
 	{

@@ -11,70 +11,69 @@
 		<link rel="stylesheet" href="~/css/site.css" />
 	</head>
 	<body>
-        <div id="search-form">
-		<form method="get" action="Products" class="search-form">
-			<label for="productName">Sök på produktnamn:</label>
-			<input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
+		<div id="search-form">
+			<form method="get" action="Products" class="search-form">
+				<label for="productName">Sök på produktnamn:</label>
+				<input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
 
-			<label for="category">Sök på kategori:</label>
-			<select id="category" name="category">
-				<option value="">Alla kategorier</option>
-				@foreach (var category in Model.Categories)
-				{
-					<option value="@category">@category</option>
-				}
-			</select>
+				<label for="category">Sök på kategori:</label>
+				<select id="category" name="category">
+					<option value="">Alla kategorier</option>
+					@foreach (var category in Model.Categories)
+					{
+						<option value="@category">@category</option>
+					}
+				</select>
+				<button type="submit">Sök</button>
+			</form>
+		</div>
 
-			<button type="submit">Sök</button>
-		</form>
-        </div>
-		
 
 		<h1>Produkter</h1>
-        <a asp-page="./ShoppingCart">Till varukorg</a>
-
-        <div class="products">
-        @if (Model.Products == null || Model.Products.Count == 0)
+		<a asp-page="./ShoppingCart">Till varukorg</a>
+		<div class="products-container">
+		<div class="products">
+			@if (Model.Products == null || Model.Products.Count == 0)
 			{
 				<p>Inga produkter hittades.</p>
 			}
-            else 
-            {
-                    
-                    @for (int i = 0; i < Model.Products.Count; i++)
-                    {
-                        var product = Model.Products[i];
-                        <div class="product-item">
-                            <a href="ProductDetails?id=@product.ProductId&currentPage=@Model.CurrentPage" class="product-item-link">
-                                <div class="product-image-container" title="@product.Description">
-                                    <img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
-                                </div>
-                                <div class="product-details">
-                                    <h4 class="product-name">@product.Name</h4>
-                                    <p class="product-price">@product.Price.ToString("C0")</p>
-                                </div>
-                            </a>
-                        </div>   
-                    }
-            }
-        </div>
-        
-        <div id="page-button-container">
-            @if (Model.CurrentPage > 1)
-            {
-                <a asp-page="./Products" asp-route-pageNumber="@(Model.CurrentPage - 1)" class="btn btn-primary">Föregående</a>
-            }
+			else
+			{
+				@for (int i = 0; i < Model.Products.Count; i++)
+				{
+					var product = Model.Products[i];
+					<div class="product-item">
+						<a href="ProductDetails?id=@product.ProductId&currentPage=@Model.CurrentPage" class="product-item-link">
+							<div class="product-image-container" title="@product.Description">
+								<img src="~/images/@product.ImagePath" alt="@product.Name" class="product-image" />
+							</div>
+							<div class="product-details">
+								<h4 class="product-name">@product.Name</h4>
+								<p class="product-price">@product.Price.ToString("C0")</p>
+							</div>
+						</a>
+					</div>
+				}
+			}
+		</div>
+		</div>
 
-            @if (Model.CurrentPage < Model.TotalPages)
-            {
-                <a asp-page="./Products" asp-route-pageNumber="@(Model.CurrentPage + 1)" class="btn btn-primary">Nästa</a>
-            }
-            
-        </div>
-        <div id="current-page-container">
-            <span id="current-page">Sida @Model.CurrentPage of @Model.TotalPages</span>
-        </div>
-        
-      </body>
-    </html>
+		<div id="page-button-container">
+			@if (Model.CurrentPage > 1)
+			{
+				<a asp-page="./Products" asp-route-pageNumber="@(Model.CurrentPage - 1)" class="btn btn-primary">Föregående</a>
+			}
+
+			@if (Model.CurrentPage < Model.TotalPages)
+			{
+				<a asp-page="./Products" asp-route-pageNumber="@(Model.CurrentPage + 1)" class="btn btn-primary">Nästa</a>
+			}
+
+		</div>
+		<div id="current-page-container">
+			<span id="current-page">Sida @Model.CurrentPage of @Model.TotalPages</span>
+		</div>
+
+	</body>
+	</html>
 }

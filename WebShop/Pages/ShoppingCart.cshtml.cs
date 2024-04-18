@@ -44,13 +44,13 @@ namespace WebShop.Pages
 
 			if (CurrentAccount != null && CurrentAccount.Cart != null)
 			{
-				CurrentAccount.Cart.CartItems.Clear(); 
-				_context.SaveChanges(); 
+				CurrentAccount.Cart.CartItems.Clear();
+				_context.SaveChanges();
 			}
 
 			CalculateCartSummary();
 
-			return RedirectToPage("/ShoppingCart"); 
+			return RedirectToPage("/ShoppingCart");
 		}
 
 		public void CalculateCartSummary()
@@ -59,7 +59,7 @@ namespace WebShop.Pages
 				.Include(a => a.Cart)
 				.ThenInclude(c => c.CartItems)
 				.FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
-			
+
 			TotalPrice = 0;
 
 			if (CurrentAccount.Cart != null && CurrentAccount.Cart.CartItems != null)

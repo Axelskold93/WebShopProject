@@ -11,27 +11,27 @@
 	<link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div id="order-confirmation">
-    <h1>Orderbekräftelse</h1>
-   
+	<div id="order-confirmation">
+		<h1>Orderbekräftelse</h1>
 
 
-    <h2>Beställda produkter:</h2>
-    <ul>
-        @foreach (var cartItem in Model.Cart.CartItems)
-        {
-            <li>
-                @cartItem.Product.Name - Pris/st: @cartItem.Product.Price.ToString("C0") - Antal: @cartItem.Quantity
-            </li>
-        }
-    </ul>
-    
-    <p>Totalsumma för beställningen: @Model.TotalPrice.ToString("C0")</p>
-    <p>Tack för din beställning!</p>
 
-        <form method="post" asp-page-handler="EmptyCart">
-            <button type="submit">Tillbaka till startsidan</button>
-        </form>
-    </div>
+		<h2>Beställda produkter:</h2>
+		<ul>
+			@foreach (var cartItem in Model.Cart.CartItems)
+			{
+				<li>
+					@cartItem.Product.Name - Pris/st: @cartItem.Product.Price.ToString("C0") - Antal: @cartItem.Quantity
+				</li>
+			}
+		</ul>
+
+		<p>Totalsumma för beställningen: @Model.TotalPrice.ToString("C0")</p>
+		<p>Tack för din beställning!</p>
+
+		<form method="post" asp-page-handler="EmptyCart">
+			<button type="submit">Tillbaka till startsidan</button>
+		</form>
+	</div>
 </body>
 </html>

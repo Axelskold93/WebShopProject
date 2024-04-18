@@ -22,7 +22,7 @@ namespace WebShop.Pages
 
 		public Cart? Cart { get; set; }
 		public decimal TotalPrice { get; set; }
-		public decimal TotalPricePerProduct { get; set; }	
+		public decimal TotalPricePerProduct { get; set; }
 		public int Quantity { get; set; }
 
 
@@ -58,22 +58,22 @@ namespace WebShop.Pages
 				}
 			}
 		}
-        public ActionResult OnPostEmptyCart()
-        {
-            Account CurrentAccount = _context.Accounts
-                .Include(a => a.Cart)
-                .ThenInclude(c => c.CartItems)
-                .FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
+		public ActionResult OnPostEmptyCart()
+		{
+			Account CurrentAccount = _context.Accounts
+				.Include(a => a.Cart)
+				.ThenInclude(c => c.CartItems)
+				.FirstOrDefault(a => a.ID == _accessControl.LoggedInAccountID);
 
-            if (CurrentAccount != null && CurrentAccount.Cart != null)
-            {
-                CurrentAccount.Cart.CartItems.Clear();
-                _context.SaveChanges();
-            }
+			if (CurrentAccount != null && CurrentAccount.Cart != null)
+			{
+				CurrentAccount.Cart.CartItems.Clear();
+				_context.SaveChanges();
+			}
 
-            
 
-            return RedirectToPage("/index");
-        }
-    }
+
+			return RedirectToPage("/index");
+		}
+	}
 }

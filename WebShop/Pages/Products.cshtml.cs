@@ -10,15 +10,15 @@ namespace WebShopProject.Pages
 	public class ProductsModel : PageModel
 	{
 		private readonly AppDbContext _context;
-		
+
 
 		public ProductsModel(AppDbContext context)
-		{ 
+		{
 			_context = context;
 		}
 		public Cart? Cart { get; set; }
 
-		
+
 		public List<Product>? Products { get; set; }
 		public int TotalPages { get; set; }
 		public int CurrentPage { get; set; }
@@ -27,16 +27,16 @@ namespace WebShopProject.Pages
 		public List<string?> Categories { get; set; } = new List<string?>();
 
 
-        public void OnGet(int? pageNumber, string productName, string category)	 
-        {
-			
-            if (pageNumber.HasValue)
-            {
-                CurrentPage = pageNumber.Value;
-            }
-            const int PageSize = 10;
-            
-            
+		public void OnGet(int? pageNumber, string productName, string category)
+		{
+
+			if (pageNumber.HasValue)
+			{
+				CurrentPage = pageNumber.Value;
+			}
+			const int PageSize = 10;
+
+
 			IQueryable<Product> productsQuery = _context.Products;
 
 			if (!string.IsNullOrEmpty(productName))
@@ -49,8 +49,8 @@ namespace WebShopProject.Pages
 				productsQuery = productsQuery.Where(p => p.Category.Contains(category));
 			}
 
-            var totalProducts = _context.Products.Count();
-            TotalPages = (int)Math.Ceiling((double)totalProducts / (double)PageSize);
+			var totalProducts = _context.Products.Count();
+			TotalPages = (int)Math.Ceiling((double)totalProducts / (double)PageSize);
 
 			if (CurrentPage > TotalPages)
 			{
@@ -61,18 +61,18 @@ namespace WebShopProject.Pages
 				CurrentPage = 1;
 			}
 
-            Products = productsQuery
-                .Skip((CurrentPage - 1) * PageSize)
-                .Take(PageSize)
-                .ToList();
+			Products = productsQuery
+				.Skip((CurrentPage - 1) * PageSize)
+				.Take(PageSize)
+				.ToList();
 
 			Categories = _context.Products.Select(p => p.Category).Distinct().ToList();
 
 			SearchName = productName;
 			SearchCategory = category;
-			
+
 
 		}
-		
+
 	}
 }

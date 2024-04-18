@@ -23,7 +23,7 @@
 			<h2>@Model.Product.Name</h2>
 			<li>Kategori: @Model.Product.Category</li>
 			<li>Beskrivning: @Model.Product.Description</li>
-			<li>Pris: @Model.Product.Price.ToString("C0")</li>
+			<li>Pris: <strong>@Model.Product.Price.ToString("C0")</strong></li>
 			<li>
 				<form method="post" asp-page-handler="AddToCart">
 					<input type="hidden" name="productId" value="@Model.Product.ProductId">

@@ -212,6 +212,19 @@ button {
     margin: 10px;
 }
 
+#product-details .product-image-container img {
+    background-color: #FFFEE7;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+#product-details ul {
+    padding-left: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 @media screen and (max-width: 767px) {
     .products {
         grid-template-columns: repeat(2, 1fr);

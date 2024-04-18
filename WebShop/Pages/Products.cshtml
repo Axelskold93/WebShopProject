@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="~/css/site.css" />
 	</head>
 	<body>
-
+        <div id="search-form">
 		<form method="get" action="Products" class="search-form">
 			<label for="productName">Sök på produktnamn:</label>
 			<input type="text" id="productName" name="productName" placeholder="Ange produktnamn" value="@Model.SearchName">
@@ -27,6 +27,7 @@
 
 			<button type="submit">Sök</button>
 		</form>
+        </div>
 		
 
 		<h1>Produkter</h1>

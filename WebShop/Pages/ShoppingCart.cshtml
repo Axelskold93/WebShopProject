@@ -41,15 +41,8 @@
 		else
 		{
 			<p>Din varukorg är tom.</p>
-		}
+		}	
 	<div class="shopping-cart-buttons-container">
-
-	
-	</div>	
-	<div class="shopping-cart-buttons-container">
-	<form method="post" asp-page-handler="EmptyCart" class="asp-form">
-		<button type="submit" class="btn btn-primary">Töm varukorg</button>
-	</form>
 	@if (Model.Cart != null && Model.Cart.CartItems != null && Model.Cart.CartItems.Count > 0)
 	{
 				<form method="post" asp-page-handler="EmptyCart">

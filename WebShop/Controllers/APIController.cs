@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebShopProject.Data;
+using WebShopProject.Models;
 
 namespace WebShop.Controllers
 {
@@ -15,5 +16,20 @@ namespace WebShop.Controllers
         {
             this.database = database;
         }
+        [HttpGet("products")]   
+        public IActionResult GetProducts(string name, string category, int pageNumber = 1, int pageSize = 10)
+        {
+            var products = database.Products.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                products = products.Where(p => p.Name.Contains(name));
+            }
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                products = products.Where(p => p.Category.Contains(category));
+            }
+            return Ok(products.Skip((pageNumber - 1) * pageSize).Take(pageSize));
+            
+        }
     }
-}
+}// test url: https://localhost:5000/api/products?name=t%C3%A4lt&category=Camping
